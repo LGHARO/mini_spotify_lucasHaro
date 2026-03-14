@@ -1,5 +1,6 @@
 package com.example.minispotify.spotify;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,6 +11,9 @@ import java.util.HashMap;
 public class PlaylistService {
 
     HashMap<String, Playlist> playlists = new HashMap<>();
+
+    @Autowired
+    private MusicaService musicaService;
 
     public Playlist cadastrarPlaylist(Playlist playlist){
 
@@ -77,6 +81,33 @@ public class PlaylistService {
 
     public String getPlaylistUsuarioId(String playlistId) {
         return playlists.get(playlistId).getUsuario().getId();
+    }
+
+
+    public Playlist addMusica(String playlistId, String musicaId, String usuarioId){
+
+        // verifica se a playlist existe
+        if (!playlists.containsKey(playlistId)){
+            throw new RuntimeException("A playlist não existe");
+        }
+
+        Playlist playlist = playlists.get(playlistId);
+
+        // verifica se o usuario é dono da playlist
+        if (!playlist.getUsuario().getId().equals(usuarioId)){
+            throw new RuntimeException("Apenas donos da playlist podem adicionar musicas a ela");
+        }
+
+        // verifica se a musica ja está na playlist
+        if (buscarMusicaPlaylist(playlistId, musicaId)){
+            throw new RuntimeException("A musica já está na playlist");
+        }
+
+        Musica musica = musicaService.buscaMusica(musicaId);
+
+        playlist.getMusicas().add(musica);
+
+        return playlist;
     }
 
     public boolean buscarMusicaPlaylist(String playlistId, String musicaId) {
