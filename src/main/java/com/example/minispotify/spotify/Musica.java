@@ -70,4 +70,8 @@ public class Musica {
     public void setTotalReproducoes(long totalReproducoes) {
         this.totalReproducoes = totalReproducoes;
     }
+
+    public void reproduzirMusica() {
+        this.totalReproducoes += 1;
+    }
 }

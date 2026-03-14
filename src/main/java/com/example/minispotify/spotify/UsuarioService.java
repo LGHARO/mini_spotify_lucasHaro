@@ -53,4 +53,7 @@ public class UsuarioService {
           usuarios.remove(id);
     }
 
+    public boolean isActive(String idUsuario) {
+        return usuarios.get(idUsuario).isAtivo();
+    }
 }

@@ -12,10 +12,23 @@ public class MusicaController {
     @Autowired
     private MusicaService musicaService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/musicas")
     public Musica postMusica(@Valid @RequestBody Musica musica){
         return musicaService.cadastrarMusica(musica);
+    }
+
+    @PostMapping("/musicas/{idMusica}/reproduzir")
+    public void reproduzirMusica(@PathVariable String idMusica, @RequestHeader("X-USER-ID") String idUsuario){
+        if (usuarioService.isActive(idUsuario)){
+            throw new RuntimeException("Usuarios inativos não podem reproduzir musicas");
+        }
+        else{
+            musicaService.reproduzirMusica(idMusica);
+        }
     }
 
     @GetMapping("/musicas")

@@ -63,4 +63,8 @@ public class MusicaService {
     public void deletarMusica(String id) {
         musicas.remove(id);
     }
+
+    public void reproduzirMusica(String idMusica) {
+        musicas.get(idMusica).reproduzirMusica();
+    }
 }
