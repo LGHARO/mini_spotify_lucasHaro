@@ -27,9 +27,13 @@ public class PlaylistController {
 
     @PostMapping("/playlists/{playlistId}/musicas/{musicaId}")
     public Playlist addMusica(@PathVariable String playlistId, @PathVariable String musicaId, @RequestHeader String usuarioId){
-
+        // verifica se a playlist existe
+        if (!playlistService.playlists.containsKey(playlistId)){
+            throw new RuntimeException("A playlist não existe");
+        }
         // compara se o usuario que esta adiconando a musica e o dono da playlist
         if (playlistService.getPlaylistUsuarioId(playlistId).equals(usuarioId)) {
+            // verifica se a musica ja esta na playlist
             if (!playlistService.buscarMusicaPlaylist(playlistId, musicaId)){
                 Musica musica = musicaService.buscaMusica(musicaId);
                 return playlistService.addMusica(playlistId, musica);
@@ -37,7 +41,6 @@ public class PlaylistController {
             else {
                 throw new RuntimeException("A musica já esta na Playlist");
             }
-
         }
         else{
             throw new RuntimeException("Apenas donos da playlist podem adicionar musicas a ela");
