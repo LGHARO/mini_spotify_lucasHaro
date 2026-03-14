@@ -1,9 +1,15 @@
 package com.example.minispotify.spotify;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class Artista {
+    @NotBlank
     private String id;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String generoMusical;
+    @NotBlank
     private String paisOrigem;
 
     public String getId() {

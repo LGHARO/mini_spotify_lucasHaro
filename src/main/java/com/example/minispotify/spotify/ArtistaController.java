@@ -1,5 +1,6 @@
 package com.example.minispotify.spotify;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ public class ArtistaController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/artistas")
-    public Artista postArtistas(@RequestBody Artista artista){
+    public Artista postArtistas(@Valid @RequestBody Artista artista){
         return artistaService.cadastrarArtista(artista);
     }
     @GetMapping("/artistas")
