@@ -14,7 +14,7 @@ public class Album {
     @NotNull
     private LocalDate dataLancamento;
     @NotNull
-    private Artista artista; // não sei se aqui vem o artista
+    private Artista artista;
 
     public String getId() {
         return id;
