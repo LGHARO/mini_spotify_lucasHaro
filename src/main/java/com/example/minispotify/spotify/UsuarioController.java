@@ -42,7 +42,7 @@ public class UsuarioController {
 
     // statue 204
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/usuario/{id}")
+    @DeleteMapping("/usuarios/{id}")
     public void deleteUsuario(@PathVariable String id) {
         usuarioService.deletarUsuario(id);
     }

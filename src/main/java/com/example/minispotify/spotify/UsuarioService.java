@@ -1,9 +1,12 @@
 package com.example.minispotify.spotify;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+@Service
 public class UsuarioService {
 
     private HashMap<String, Usuario> usuarios = new HashMap<>();
@@ -11,7 +14,6 @@ public class UsuarioService {
     // recebe o usuario e o cadastra
     public Usuario cadastraUsuario(Usuario usuario){
         if (usuarios.containsKey(usuario.getId())){
-            System.out.println("Usuario ja existe");
             throw new RuntimeException("Paciente já existe");
         }
         usuarios.put(usuario.getId(), usuario);
