@@ -13,10 +13,36 @@ public class PlaylistController {
     @Autowired
     private PlaylistService playlistService;
 
+    @Autowired
+    private MusicaService musicaService;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/playlists")
     public Playlist postPlaylist(@Valid @RequestBody Playlist playlist){
         return playlistService.cadastrarPlaylist(playlist);
+    }
+
+    @PostMapping("/playlists/{playlistId}/musicas/{musicaId}")
+    public Playlist addMusica(@PathVariable String playlistId, @PathVariable String musicaId, @RequestHeader String usuarioId){
+
+        // compara se o usuario que esta adiconando a musica e o dono da playlist
+        if (playlistService.getPlaylistUsuarioId(playlistId).equals(usuarioId)) {
+            if (!playlistService.buscarMusicaPlaylist(playlistId, musicaId)){
+                Musica musica = musicaService.buscaMusica(musicaId);
+                return playlistService.addMusica(playlistId, musica);
+            }
+            else {
+                throw new RuntimeException("A musica já esta na Playlist");
+            }
+
+        }
+        else{
+            throw new RuntimeException("Apenas donos da playlist podem adicionar musicas a ela");
+        }
+
     }
 
     @GetMapping("/playlists")

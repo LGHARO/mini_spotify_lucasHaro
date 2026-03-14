@@ -1,16 +1,17 @@
 package com.example.minispotify.spotify;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Playlist {
-    private long id ;
+    private String id ;
     private String nome;
     private boolean publica;
     private LocalDateTime dataCriacao;
     private Usuario usuario;
-    private Musica musica;
+    private List<Musica> musicas;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
@@ -46,11 +47,16 @@ public class Playlist {
         this.usuario = usuario;
     }
 
-    public Musica getMusica() {
-        return musica;
+    public List<Musica>  getMusicas() {
+        return musicas;
     }
 
-    public void setMusica(Musica musica) {
-        this.musica = musica;
+    public void addMusica(Musica musica) {
+        this.musicas.add(musica);
+    }
+
+
+    public void addMusicas(List<Musica> musicas) {
+        this.musicas.addAll(musicas);
     }
 }
