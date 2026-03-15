@@ -1,85 +1,500 @@
 # Mini Spotify API
 
-## Project Description
-The Mini Spotify API is a lightweight implementation of the Spotify API that allows users to manage playlists, albums, and tracks, as well as access data about users and artists. This project aims to provide a simplified interface for interacting with music-related content.
+API REST desenvolvida com **Spring Boot** que simula funcionalidades básicas de um serviço de streaming de música, incluindo gerenciamento de usuários, artistas, álbuns, músicas e playlists.
 
-## Technologies
-- Node.js
-- Express
-- MongoDB
-- Mongoose
-- Jest for testing
-
-## Execution Instructions
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/LGHARO/mini_spotify_lucasHaro.git
-   cd mini_spotify_lucasHaro
-   ```
-2. Install the dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the application:
-   ```bash
-   npm start
-   ```
-4. The API will run on `http://localhost:3000`.
-
-## Project Structure
-```
-mini_spotify_lucasHaro/
-├── models/
-├── routes/
-├── controllers/
-├── tests/
-├── app.js
-└── package.json
-```
-
-## API Routes Documentation
-
-### Usuarios
-- `GET /usuarios`: Retrieve all users.
-- `POST /usuarios`: Create a new user.
-- `GET /usuarios/:id`: Retrieve a user by ID.
-- `PUT /usuarios/:id`: Update a user by ID.
-- `DELETE /usuarios/:id`: Delete a user by ID.
-
-### Artistas
-- `GET /artistas`: Retrieve all artists.
-- `POST /artistas`: Create a new artist.
-- `GET /artistas/:id`: Retrieve an artist by ID.
-- `PUT /artistas/:id`: Update an artist by ID.
-- `DELETE /artistas/:id`: Delete an artist by ID.
-
-### Albums
-- `GET /albums`: Retrieve all albums.
-- `POST /albums`: Create a new album.
-- `GET /albums/:id`: Retrieve an album by ID.
-- `PUT /albums/:id`: Update an album by ID.
-- `DELETE /albums/:id`: Delete an album by ID.
-
-### Musicas
-- `GET /musicas`: Retrieve all tracks.
-- `POST /musicas`: Create a new track.
-- `GET /musicas/:id`: Retrieve a track by ID.
-- `PUT /musicas/:id`: Update a track by ID.
-- `DELETE /musicas/:id`: Delete a track by ID.
-
-### Playlists
-- `GET /playlists`: Retrieve all playlists.
-- `POST /playlists`: Create a new playlist.
-- `GET /playlists/:id`: Retrieve a playlist by ID.
-- `PUT /playlists/:id`: Update a playlist by ID.
-- `DELETE /playlists/:id`: Delete a playlist by ID.
-
-### Relatorios
-- `GET /relatorios`: Retrieve all reports.
-- `POST /relatorios`: Create a new report.
-- `GET /relatorios/:id`: Retrieve a report by ID.
-- `PUT /relatorios/:id`: Update a report by ID.
-- `DELETE /relatorios/:id`: Delete a report by ID.
+A aplicação mantém os dados **em memória utilizando HashMap**, sem persistência em banco de dados.
 
 ---
-This documentation provides a comprehensive overview and guides users through the functionalities available in the Mini Spotify API.
+
+# Tecnologias
+
+* Java
+* Spring Boot
+* Spring Web
+* Jakarta Validation
+* REST API
+
+A aplicação inicia através da classe principal Spring Boot:
+
+* `SpotifyApplication` 
+
+---
+
+# Estrutura da aplicação
+
+A arquitetura segue o padrão:
+
+```
+Controller → Service → Model
+```
+
+### Controllers
+
+Responsáveis por expor os endpoints HTTP da API.
+
+* `UsuarioController` 
+* `ArtistaController` 
+* `AlbumController` 
+* `MusicaController` 
+* `PlaylistController` 
+* `RelatorioController` 
+
+### Services
+
+Contêm a lógica de negócio da aplicação.
+
+* `UsuarioService` 
+* `ArtistaService` 
+* `AlbumService` 
+* `MusicaService` 
+* `PlaylistService` 
+
+### Models
+
+Representam as entidades do sistema.
+
+* `Usuario` 
+* `Artista` 
+* `Album` 
+* `Musica` 
+* `Playlist` 
+
+### DTO
+
+Objeto utilizado para retorno de relatórios.
+
+* `TopMusicasDTO` 
+
+### Enum
+
+Tipo de usuário do sistema.
+
+* `TipoUsuarios`
+
+  * `FREE`
+  * `PREMIUM` 
+
+# Tratamento de erros
+
+A aplicação utiliza `ResponseStatusException` para sinalizar erros nas regras de negócio. Essas exceções são interceptadas por um handler global que padroniza a resposta JSON da API. 
+
+Formato da resposta:
+
+```json
+{
+  "status": 404,
+  "message": "Mensagem de erro"
+}
+```
+
+Estrutura retornada:
+
+* **status** – código HTTP
+* **message** – descrição do erro
+
+---
+
+# Casos comuns de erro
+
+## Recurso não encontrado
+
+Ocorre quando um objeto solicitado não existe no sistema.
+
+Exemplo:
+
+```http
+GET /musicas/123
+```
+
+Resposta:
+
+```json
+{
+  "status": 404,
+  "message": "Musica não existe"
+}
+```
+
+Esse comportamento ocorre em diversas operações como:
+
+* busca de música
+* busca de artista
+* busca de playlist
+* busca de álbum
+
+---
+
+## Recurso já existente
+
+Ocorre quando se tenta cadastrar um objeto com um `id` já existente.
+
+Exemplo:
+
+```http
+POST /usuarios
+```
+
+Resposta:
+
+```json
+{
+  "status": 409,
+  "message": "Usuario ja existe"
+}
+```
+
+Casos onde isso pode ocorrer:
+
+* criação de usuário
+* criação de álbum
+* criação de música
+* criação de playlist
+
+---
+
+## Dependência inexistente
+
+Ocorre quando um recurso depende de outro que ainda não foi criado.
+
+### Exemplo: criar álbum sem artista
+
+```http
+POST /albums
+```
+
+Resposta:
+
+```json
+{
+  "status": 404,
+  "message": "Artista não existe"
+}
+```
+
+Esse tipo de validação ocorre em:
+
+* criação de álbum (precisa de artista)
+* criação de música (precisa de artista)
+
+---
+
+## Usuário inválido para operação
+
+Algumas ações exigem validação do usuário.
+
+### Exemplo: reproduzir música com usuário inexistente
+
+```http
+POST /musicas/{id}/reproduzir
+```
+
+Resposta:
+
+```json
+{
+  "status": 404,
+  "message": "Usuario não existe"
+}
+```
+
+Outro caso:
+
+Usuários **inativos** não podem reproduzir músicas. 
+
+---
+
+## Operação não permitida
+
+Algumas operações possuem restrições de acesso.
+
+### Exemplo: adicionar música em playlist de outro usuário
+
+```http
+POST /playlists/{playlistId}/musicas/{musicaId}
+```
+
+Resposta:
+
+```json
+{
+  "status": 404,
+  "message": "Apenas donos da playlist podem adicionar musicas a ela"
+}
+```
+
+Essa validação garante que apenas o **dono da playlist** possa modificá-la. 
+
+---
+
+## Música duplicada na playlist
+
+Ocorre quando se tenta adicionar uma música que já está na playlist.
+
+Resposta:
+
+```json
+{
+  "status": 404,
+  "message": "A musica ja esta na playlist"
+}
+```
+
+Esse comportamento é validado antes da inclusão da música na playlist. 
+
+---
+
+## Validação de dados
+
+Alguns campos são obrigatórios e são validados com **Jakarta Validation**.
+
+Exemplos:
+
+* `@NotBlank`
+* `@NotNull`
+* `@Email`
+
+Caso esses campos não sejam enviados corretamente, a API retorna erro de validação.
+
+---
+
+# Observação sobre validação de dependências
+
+Antes de criar determinados recursos, o sistema valida a existência de objetos relacionados.
+
+Exemplos:
+
+* Um **álbum só pode ser criado se o artista existir**. 
+* Uma **música só pode ser criada se o artista existir**. 
+* Uma **playlist só pode ser criada se o usuário existir**. 
+* Todas as **músicas adicionadas à playlist precisam existir previamente**. 
+
+---
+
+# Funcionalidades
+
+## Usuários
+
+Permite cadastrar e gerenciar usuários da aplicação.
+
+### Endpoints
+
+POST
+`/usuarios`
+
+GET
+`/usuarios`
+
+GET
+`/usuarios/{id}`
+
+PUT
+`/usuarios/{id}`
+
+DELETE
+`/usuarios/{id}`
+
+---
+
+## Artistas
+
+Gerenciamento de artistas musicais.
+
+### Endpoints
+
+POST
+`/artistas`
+
+GET
+`/artistas`
+
+GET
+`/artistas/{id}`
+
+PUT
+`/artistas/{id}`
+
+DELETE
+`/artistas/{id}`
+
+---
+
+## Álbuns
+
+Representam coleções de músicas associadas a um artista.
+
+### Endpoints
+
+POST
+`/albums`
+
+GET
+`/albums`
+
+GET
+`/albums/{id}`
+
+PUT
+`/albums/{id}`
+
+DELETE
+`/albums/{id}`
+
+Um álbum precisa estar associado a um **artista existente**. 
+
+---
+
+## Músicas
+
+Representam faixas individuais pertencentes a um álbum e artista.
+
+### Endpoints
+
+POST
+`/musicas`
+
+GET
+`/musicas`
+
+GET
+`/musicas/{id}`
+
+PUT
+`/musicas/{id}`
+
+DELETE
+`/musicas/{id}`
+
+### Reproduzir música
+
+POST
+`/musicas/{idMusica}/reproduzir`
+
+Header obrigatório:
+
+```
+X-USER-ID: {idUsuario}
+```
+
+Regras:
+
+* usuário deve existir
+* usuário deve estar ativo
+* música deve existir
+
+Cada reprodução incrementa o contador de reproduções.
+
+---
+
+## Playlists
+
+Coleções de músicas criadas por usuários.
+
+### Endpoints
+
+POST
+`/playlists`
+
+GET
+`/playlists`
+
+GET
+`/playlists/{id}`
+
+PUT
+`/playlists/{id}`
+
+DELETE
+`/playlists/{id}`
+
+### Adicionar música à playlist
+
+POST
+
+```
+/playlists/{playlistId}/musicas/{musicaId}
+```
+
+Header obrigatório:
+
+```
+X-USER-ID: {usuarioId}
+```
+
+Regras:
+
+* playlist deve existir
+* usuário deve ser o dono da playlist
+* música não pode já estar na playlist 
+
+---
+
+# Relatórios
+
+## Top músicas mais reproduzidas
+
+Endpoint:
+
+```
+GET /relatorios/top-musicas
+```
+
+Retorna as **10 músicas mais reproduzidas**, contendo:
+
+* título
+* artista
+* total de reproduções
+
+Exemplo de resposta:
+
+```json
+[
+  {
+    "titulo": "Song A",
+    "artista": "Artist A",
+    "totalReproducoes": 120
+  }
+]
+```
+
+---
+
+# Execução do projeto
+
+### 1. Clonar o repositório
+
+```bash
+git clone <repo>
+```
+
+### 2. Executar aplicação
+
+```bash
+./mvnw spring-boot:run
+```
+
+ou
+
+```bash
+mvn spring-boot:run
+```
+
+### 3. Acessar API
+
+```
+http://localhost:8080
+```
+
+### 4. Testar a API no Postman
+
+```
+É possivel abir os testes ja pré programados no arquivo json anexado na entrega do projeto no blackboard
+
+```
+
+---
+
+# Observações
+
+* Não há persistência em banco de dados.
+* Os dados são armazenados em memória.
+* Reiniciar a aplicação limpa todos os registros.
