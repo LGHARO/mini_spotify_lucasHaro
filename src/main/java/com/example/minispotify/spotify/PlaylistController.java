@@ -13,7 +13,6 @@ public class PlaylistController {
     @Autowired
     private PlaylistService playlistService;
 
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/playlists")
     public Playlist postPlaylist(@Valid @RequestBody Playlist playlist){
@@ -21,7 +20,7 @@ public class PlaylistController {
     }
 
     @PostMapping("/playlists/{playlistId}/musicas/{musicaId}")
-    public Playlist addMusica(@PathVariable String playlistId, @PathVariable String musicaId, @RequestHeader String usuarioId){
+    public Playlist addMusica(@PathVariable String playlistId, @PathVariable String musicaId, @RequestHeader("X-USER-ID") String usuarioId){
         return playlistService.addMusica(playlistId, musicaId, usuarioId);
     }
 

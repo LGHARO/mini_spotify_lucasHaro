@@ -35,7 +35,7 @@ public class AlbumController {
         return albumService.atualizaAlbum(id, album);
     }
 
-    // statue 204
+    // status 204
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/albums/{id}")
     public void deleteAlbum(@PathVariable String id) {

@@ -6,11 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-/*
-    o @RestController serve para tornar a classe alvo possivel de receber requisições HTTP
-    alem disso nela agora é possivel retornar as respostas da requisição diretamente no corpo da
-    resposta em json
- */
 
 @RestController
 public class UsuarioController {
@@ -18,7 +13,6 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    // troca o response status do default 200 pra 201
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/usuarios")
     public Usuario postPacientes(@Valid @RequestBody Usuario usuario){

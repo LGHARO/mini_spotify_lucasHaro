@@ -1,14 +1,22 @@
 package com.example.minispotify.spotify;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class Playlist {
+    @NotBlank
     private String id ;
+    @NotBlank
     private String nome;
     private boolean publica;
+    @NotNull
     private LocalDateTime dataCriacao;
+    @NotNull
     private Usuario usuario;
+    @NotNull
     private List<Musica> musicas;
 
     public String getId() {

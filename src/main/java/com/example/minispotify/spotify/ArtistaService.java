@@ -1,6 +1,8 @@
 package com.example.minispotify.spotify;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,24 +31,39 @@ public class ArtistaService {
     }
 
     public Artista buscaArtista(String id) {
+        if(!artistas.containsKey(id)){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Artista não existe");
+        }
         return artistas.get(id);
     }
 
     public Artista atualizaArtista(String id, Artista artista) {
-        if (artista.getNome() != null){
-            artistas.get(id).setNome(artista.getNome());
-        }
-        if (artista.getGeneroMusical() != null){
-            artistas.get(id).setGeneroMusical(artista.getGeneroMusical());
-        }
-        if (artista.getPaisOrigem() != null){
-            artistas.get(id).setPaisOrigem(artista.getPaisOrigem());
-        }
-        return artistas.get(artista.getId());
 
+        Artista artistaExistente = artistas.get(id);
+
+        if (artistaExistente == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Artista não existe");
+        }
+
+        if (artista.getNome() != null){
+            artistaExistente.setNome(artista.getNome());
+        }
+
+        if (artista.getGeneroMusical() != null){
+            artistaExistente.setGeneroMusical(artista.getGeneroMusical());
+        }
+
+        if (artista.getPaisOrigem() != null){
+            artistaExistente.setPaisOrigem(artista.getPaisOrigem());
+        }
+
+        return artistaExistente;
     }
 
     public void deletarArtista(String id) {
+        if(!artistas.containsKey(id)){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Artista não existe");
+        }
         artistas.remove(id);
     }
 }

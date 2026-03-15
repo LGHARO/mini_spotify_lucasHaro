@@ -33,6 +33,7 @@ public class ArtistaController {
         return artistaService.atualizaArtista(id, artista);
     }
 
+
     // statue 204
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/artistas/{id}")
