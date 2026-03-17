@@ -81,109 +81,11 @@ public class PlaylistService {
             playlistExistente.setNome(playlist.getNome());
         }
 
+        // se a nova playlist for public troca a original pra
         playlistExistente.setPublica(playlist.isPublica());
 
         if (playlist.getDataCriacao() != null){
             playlistExistente.setDataCriacao(playlist.getDataCriacao());
-        }
-
-        // atualização parcial do usuário
-        if (playlist.getUsuario() != null){
-
-            Usuario usuarioExistente = playlistExistente.getUsuario();
-            Usuario usuarioNovo = playlist.getUsuario();
-
-            if (usuarioNovo.getNome() != null){
-                usuarioExistente.setNome(usuarioNovo.getNome());
-            }
-
-            if (usuarioNovo.getEmail() != null){
-                usuarioExistente.setEmail(usuarioNovo.getEmail());
-            }
-
-            if (usuarioNovo.getTipoUsuario() != null){
-                usuarioExistente.setTipoUsuario(usuarioNovo.getTipoUsuario());
-            }
-
-            usuarioExistente.setAtivo(usuarioNovo.isAtivo());
-
-            if (usuarioNovo.getDataCriacao() != null){
-                usuarioExistente.setDataCriacao(usuarioNovo.getDataCriacao());
-            }
-        }
-
-        // atualização das músicas
-        if (playlist.getMusicas() != null){
-
-            for (Musica musicaNova : playlist.getMusicas()){
-
-                Musica musicaExistente = null;
-
-                for (Musica m : playlistExistente.getMusicas()){
-                    if (Objects.equals(m.getId(), musicaNova.getId())) {
-                        musicaExistente = m;
-                        break;
-                    }
-                }
-
-                if (musicaExistente != null){
-
-                    if (musicaNova.getTitulo() != null){
-                        musicaExistente.setTitulo(musicaNova.getTitulo());
-                    }
-
-                    if (musicaNova.getDuracaoSegundos() != null){
-                        musicaExistente.setDuracaoSegundos(musicaNova.getDuracaoSegundos());
-                    }
-
-                    if (musicaNova.getNumerofaixa() != null){
-                        musicaExistente.setNumerofaixa(musicaNova.getNumerofaixa());
-                    }
-
-                    if (musicaNova.getTotalReproducoes() != 0){
-                        musicaExistente.setTotalReproducoes(musicaNova.getTotalReproducoes());
-                    }
-
-                    // artista da música
-                    if (musicaNova.getArtista() != null){
-
-                        Artista artistaExistente = musicaExistente.getArtista();
-                        Artista artistaNovo = musicaNova.getArtista();
-
-                        if (artistaNovo.getNome() != null){
-                            artistaExistente.setNome(artistaNovo.getNome());
-                        }
-
-                        if (artistaNovo.getGeneroMusical() != null){
-                            artistaExistente.setGeneroMusical(artistaNovo.getGeneroMusical());
-                        }
-
-                        if (artistaNovo.getPaisOrigem() != null){
-                            artistaExistente.setPaisOrigem(artistaNovo.getPaisOrigem());
-                        }
-                    }
-
-                    // álbum da música
-                    if (musicaNova.getAlbum() != null){
-
-                        Album albumExistente = musicaExistente.getAlbum();
-                        Album albumNovo = musicaNova.getAlbum();
-
-                        if (albumNovo.getTitulo() != null){
-                            albumExistente.setTitulo(albumNovo.getTitulo());
-                        }
-
-                        if (albumNovo.getDataLancamento() != null){
-                            albumExistente.setDataLancamento(albumNovo.getDataLancamento());
-                        }
-                    }
-
-                }
-                else {
-                    // se não existir na playlist, adiciona
-                    playlistExistente.getMusicas().add(musicaNova);
-                }
-            }
         }
 
         return playlistExistente;

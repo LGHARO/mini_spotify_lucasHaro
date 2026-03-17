@@ -72,38 +72,6 @@ public class MusicaService {
             musicaExistente.setTotalReproducoes(musica.getTotalReproducoes());
         }
 
-        if (musica.getAlbum() != null){
-
-            Album albumExistente = musicaExistente.getAlbum();
-            Album albumNovo = musica.getAlbum();
-
-            if (albumNovo.getTitulo() != null){
-                albumExistente.setTitulo(albumNovo.getTitulo());
-            }
-
-            if (albumNovo.getDataLancamento() != null){
-                albumExistente.setDataLancamento(albumNovo.getDataLancamento());
-            }
-        }
-
-        if (musica.getArtista() != null){
-
-            Artista artistaExistente = musicaExistente.getArtista();
-            Artista artistaNovo = musica.getArtista();
-
-            if (artistaNovo.getNome() != null){
-                artistaExistente.setNome(artistaNovo.getNome());
-            }
-
-            if (artistaNovo.getGeneroMusical() != null){
-                artistaExistente.setGeneroMusical(artistaNovo.getGeneroMusical());
-            }
-
-            if (artistaNovo.getPaisOrigem() != null){
-                artistaExistente.setPaisOrigem(artistaNovo.getPaisOrigem());
-            }
-        }
-
         return musicaExistente;
     }
 
