@@ -47,7 +47,8 @@ Contêm a lógica de negócio da aplicação.
 * `ArtistaService` 
 * `AlbumService` 
 * `MusicaService` 
-* `PlaylistService` 
+* `PlaylistService`
+* `HistoricoReproducoesService`
 
 ### Models
 
@@ -57,7 +58,8 @@ Representam as entidades do sistema.
 * `Artista` 
 * `Album` 
 * `Musica` 
-* `Playlist` 
+* `Playlist`
+* `HistoricoReproducoes`
 
 ### DTO
 
@@ -287,6 +289,9 @@ GET
 GET
 `/usuarios/{id}`
 
+GET
+`/usuarios/{id}/historico`
+
 PUT
 `/usuarios/{id}`
 
@@ -357,6 +362,9 @@ GET
 
 GET
 `/musicas/{id}`
+
+GET
+`/musicas/{id}/historico`
 
 PUT
 `/musicas/{id}`
@@ -452,6 +460,76 @@ Exemplo de resposta:
     "titulo": "Song A",
     "artista": "Artist A",
     "totalReproducoes": 120
+  }
+]
+```
+
+---
+
+# Histórico de Reprodução
+
+A API permite consultar o histórico de reproduções tanto por **música** quanto por **usuário**.
+
+Cada registro de histórico representa uma reprodução realizada, incluindo informações como:
+
+* usuário
+* música
+* data/hora da reprodução
+
+---
+
+## Endpoints
+
+### Histórico de uma música
+
+Retorna todas as reproduções de uma música específica.
+
+```
+GET /musicas/{musicaId}/historico
+```
+
+Exemplo:
+
+```http
+GET /musicas/1/historico
+```
+
+Resposta:
+
+```json
+[
+  {
+    "usuario": "user1",
+    "musica": "Song A",
+    "dataHora": "2026-03-21T14:30:00"
+  }
+]
+```
+
+---
+
+### Histórico de um usuário
+
+Retorna todas as músicas reproduzidas por um usuário.
+
+```
+GET /usuarios/{usuarioId}/historico
+```
+
+Exemplo:
+
+```http
+GET /usuarios/1/historico
+```
+
+Resposta:
+
+```json
+[
+  {
+    "usuario": "user1",
+    "musica": "Song A",
+    "dataHora": "2026-03-21T14:30:00"
   }
 ]
 ```
