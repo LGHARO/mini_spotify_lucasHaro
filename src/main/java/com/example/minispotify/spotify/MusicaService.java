@@ -22,6 +22,9 @@ public class MusicaService {
     @Autowired
     private  AlbumService albumService;
 
+    @Autowired
+    private HistoricoReproducoesService historicoReproducoesService;
+
     HashMap<String, Musica> musicas =  new HashMap<>();
 
     public Musica cadastrarMusica(Musica musica) {
@@ -100,7 +103,9 @@ public class MusicaService {
         if (!usuarioService.isActive(idUsuario)){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuarios inativos não podem reproduzir musicas");
         }
-
+        Usuario usuario = usuarioService.buscaUsuario(idUsuario);
+        Musica musica  = buscaMusica(idMusica);
+        historicoReproducoesService.cadastrarHistorico(usuario, musica);
         musicas.get(idMusica).reproduzirMusica();
     }
 

@@ -13,6 +13,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private HistoricoReproducoesService historicoReproducoesService;
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/usuarios")
     public Usuario postPacientes(@Valid @RequestBody Usuario usuario){
@@ -39,6 +42,11 @@ public class UsuarioController {
     @DeleteMapping("/usuarios/{id}")
     public void deleteUsuario(@PathVariable String id) {
         usuarioService.deletarUsuario(id);
+    }
+
+    @GetMapping("/usuarios/{usuarioId}/historico")
+    public Collection<HistoricoReproducoes> getHistoricoUsuario(@PathVariable String usuarioId ){
+        return historicoReproducoesService.getHistoricoUsuario(usuarioId);
     }
 
 

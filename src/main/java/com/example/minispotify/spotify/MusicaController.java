@@ -11,6 +11,9 @@ import java.util.Collection;
 public class MusicaController {
     @Autowired
     private MusicaService musicaService;
+    @Autowired
+    private HistoricoReproducoesService historicoReproducoesService;
+
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/musicas")
@@ -43,6 +46,11 @@ public class MusicaController {
     @DeleteMapping("/musicas/{id}")
     public void deleteMusica(@PathVariable String id) {
         musicaService.deletarMusica(id);
+    }
+
+    @GetMapping("/musicas/{musicaId}/historico")
+    public Collection<HistoricoReproducoes> getHistoricoMusica(@PathVariable String musicaId){
+        return historicoReproducoesService.getHistoricoMusica(musicaId);
     }
 
 }
