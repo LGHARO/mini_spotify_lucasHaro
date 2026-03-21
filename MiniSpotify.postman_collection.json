@@ -1,0 +1,1020 @@
+{
+  "info": {
+    "_postman_id": "59eef23e-7bab-4560-9116-d6c478a7e2a2",
+    "name": "MiniSpotify",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48107205",
+    "_collection_link": "https://go.postman.co/collection/48107205-59eef23e-7bab-4560-9116-d6c478a7e2a2?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Artistas",
+      "item": [
+        {
+          "name": "PostArtista_1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"1\",\n  \"nome\":\"lucas\",\n  \"generoMusical\": \"Nu Metal\",\n  \"paisOrigem\": \"USA\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/artistas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "artistas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PostArtista_2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"2\",\n  \"nome\": \"Daft Punk\",\n  \"generoMusical\": \"Electronic\",\n  \"paisOrigem\": \"France\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/artistas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "artistas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetArtistas",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/artistas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "artistas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetArtista_1",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/artistas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "artistas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PutArtista_1",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Sepultura\",\n  \"paisOrigem\": \"Brasil\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/artistas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "artistas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DelArtista_1",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/artistas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "artistas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "PostUsuario_1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"1\",\n  \"nome\": \"Lucas Silva\",\n  \"email\": \"lucas@email.com\",\n  \"tipoUsuario\": \"FREE\",\n  \"ativo\": true,\n  \"dataCriacao\": \"2026-03-14T16:30:00\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PostUsuario_2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"2\",\n  \"nome\": \"Ana Souza\",\n  \"email\": \"ana@email.com\",\n  \"tipoUsuario\": \"PREMIUM\",\n  \"ativo\": true,\n  \"dataCriacao\": \"2026-03-14T17:10:00\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetUsuarios",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetUsuario_1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetUsuario_1_historico",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios/1/historico",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios",
+                "1",
+                "historico"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PutUsuario_1",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"ativo\": false,\n    \"nome\": \"Lucas trocado da Silva\",\n    \"tipoUsuario\": \"PREMIUM\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DelUsuario_1",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/usuarios/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "usuarios",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Musicas",
+      "item": [
+        {
+          "name": "PostMusica_1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"1\",\n    \"titulo\": \"Numb\",\n    \"duracaoSegundos\": 185,\n    \"numerofaixa\": 1,\n    \"totalReproducoes\": 1200000,\n    \"album\": {\n      \"id\": \"1\",\n      \"artista\": {\n        \"id\": \"1\",\n        \"nome\": \"Linkin Park\",\n        \"generoMusical\": \"Nu Metal\",\n        \"paisOrigem\": \"USA\"},\n      \"titulo\": \"Hybrid Theory\",\n      \"dataLancamento\": \"2000-10-24\"\n    },\n    \"artista\": {\n        \"id\": \"1\",\n        \"nome\": \"Linkin Park\",\n        \"generoMusical\": \"Nu Metal\",\n        \"paisOrigem\": \"USA\"\n    }}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/musicas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "musicas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PostMusica_2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"2\",\n    \"titulo\": \"Harder Better Faster Stronger\",\n    \"duracaoSegundos\": 224,\n    \"numerofaixa\": 4,\n    \"totalReproducoes\": 1500000,\n    \"album\": {\n      \"id\": \"202\",\n      \"titulo\": \"Discovery\",\n      \"dataLancamento\": \"2001-03-12\"\n    },\n    \"artista\": {\n        \"id\": \"2\",\n        \"nome\": \"Daft Punk\",\n        \"generoMusical\": \"Electronic\",\n        \"paisOrigem\": \"France\"\n    }\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/musicas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "musicas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PostMusica_3",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"2\",\n    \"titulo\": \"Harder Better Faster Stronger\",\n    \"duracaoSegundos\": 224,\n    \"numerofaixa\": 4,\n    \"totalReproducoes\": 1500000,\n    \"album\": {\n      \"id\": \"202\",\n      \"titulo\": \"Discovery\",\n      \"dataLancamento\": \"2001-03-12\"\n    },\n    \"artista\": {\n        \"id\": \"2\",\n        \"nome\": \"Daft Punk\",\n        \"generoMusical\": \"Electronic\",\n        \"paisOrigem\": \"France\"\n    }\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/musicas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "musicas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetMusicas",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/musicas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "musicas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetMusica_1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/musicas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "musicas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetMusica_1_Historico",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/musicas/1/historico",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "musicas",
+                "1",
+                "historico"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PutMusica_1",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"titulo\": \"Numb TROCADO\",\n    \"duracaoSegundos\": 100000,\n    \"numerofaixa\":3\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/musicas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "musicas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DelMusica_1",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/musicas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "musicas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ReproduzirMusica_1",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-USER-ID",
+                "value": "1",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/musicas/1/reproduzir",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "musicas",
+                "1",
+                "reproduzir"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Albums",
+      "item": [
+        {
+          "name": "PostAlbum_1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"1\",\n  \"titulo\": \"Hybrid Theory\",\n  \"dataLancamento\": \"2000-10-24\",\n  \"artista\": {\n    \"id\": \"1\",\n    \"nome\": \"Linkin Park\",\n    \"generoMusical\": \"Nu Metal\",\n    \"paisOrigem\": \"USA\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/albums",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "albums"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PostAlbum_2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"2\",\n  \"titulo\": \"Discovery\",\n  \"dataLancamento\": \"2001-03-12\",\n  \"artista\": {\n    \"id\": \"2\",\n    \"nome\": \"Daft Punk\",\n    \"generoMusical\": \"Electronic\",\n    \"paisOrigem\": \"France\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/albums",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "albums"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetAlbums",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/albums",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "albums"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetAlbum_1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/albums/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "albums",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PutAlbum_1",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"artista\": {\n        \"nome\": \"Linkin Park TROCADO\"\n    },\n    \"titulo\": \"Hybrid Theory TROCADO\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/albums/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "albums",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DelAlbum_1",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/albums/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "albums",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Playlists",
+      "item": [
+        {
+          "name": "PostPlaylist_1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"1\",\n  \"nome\": \"Rock Favorites\",\n  \"publica\": true,\n  \"dataCriacao\": \"2026-03-15T18:30:00\",\n  \"usuario\": {\n    \"id\": \"1\",\n    \"nome\": \"Lucas Silva\",\n    \"email\": \"lucas@email.com\",\n    \"tipoUsuario\": \"FREE\",\n    \"ativo\": true,\n    \"dataCriacao\": \"2026-03-10T12:00:00\"\n  },\n  \"musicas\": [\n    {\n      \"id\": \"1\",\n      \"titulo\": \"Numb\",\n      \"duracaoSegundos\": 185,\n      \"numerofaixa\": 1,\n      \"totalReproducoes\": 1200000,\n      \"artista\": {\n        \"id\": \"1\",\n        \"nome\": \"Linkin Park\",\n        \"generoMusical\": \"Nu Metal\",\n        \"paisOrigem\": \"USA\"\n      },\n      \"album\": {\n        \"id\": \"1\",\n        \"titulo\": \"Hybrid Theory\",\n        \"dataLancamento\": \"2000-10-24\",\n        \"artista\": {\n        \"id\": \"1\",\n        \"nome\": \"Linkin Park\",\n        \"generoMusical\": \"Nu Metal\",\n        \"paisOrigem\": \"USA\"\n      }\n      }\n    },\n    {\n      \"id\": \"2\",\n      \"titulo\": \"In The End\",\n      \"duracaoSegundos\": 216,\n      \"numerofaixa\": 2,\n      \"totalReproducoes\": 2000000,\n      \"artista\": {\n        \"id\": \"1\",\n        \"nome\": \"Linkin Park\",\n        \"generoMusical\": \"Nu Metal\",\n        \"paisOrigem\": \"USA\"\n      },\n      \"album\": {\n        \"id\": \"2\",\n        \"titulo\": \"Hybrid Theory\",\n        \"dataLancamento\": \"2000-10-24\",\n        \"artista\": {\n        \"id\": \"1\",\n        \"nome\": \"Linkin Park\",\n        \"generoMusical\": \"Nu Metal\",\n        \"paisOrigem\": \"USA\"\n      }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/playlists",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "playlists"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetPlaylists",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/playlists",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "playlists"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetPlaylist_1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/playlists/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "playlists",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PutPlaylist_1",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Rock Favorites Atualizada\",\n  \"publica\": true\n\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/playlists/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "playlists",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DelPlaylist_1",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/playlists/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "playlists",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "AdicionarMusicaPlaylist_1",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-USER-ID",
+                "value": "1",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/playlists/1/musicas/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "playlists",
+                "1",
+                "musicas",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Relatorios",
+      "item": [
+        {
+          "name": "TopMusicas",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/relatorios/top-musicas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "relatorios",
+                "top-musicas"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
