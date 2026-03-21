@@ -15,7 +15,7 @@ public class ArtistaService {
 
     public Artista cadastrarArtista(Artista artista) {
         if (artistas.containsKey(artista.getId()))
-            throw new RuntimeException("Artista ja existe");
+            throw new ResponseStatusException(HttpStatus.CONFLICT,"Artista já existe");
 
         artistas.put(artista.getId(), artista);
         return artista;

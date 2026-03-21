@@ -32,8 +32,11 @@ public class UsuarioService {
         return resposta;
     }
 
-    // pega umusuario
+    // pega um usuario
     public Usuario buscaUsuario(String id) {
+        if (!usuarios.containsKey(id)){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuario não existe");
+        }
         return usuarios.get(id);
     }
 

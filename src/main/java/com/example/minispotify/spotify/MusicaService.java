@@ -19,6 +19,9 @@ public class MusicaService {
     @Autowired
     private ArtistaService artistaService;
 
+    @Autowired
+    private  AlbumService albumService;
+
     HashMap<String, Musica> musicas =  new HashMap<>();
 
     public Musica cadastrarMusica(Musica musica) {
@@ -27,6 +30,9 @@ public class MusicaService {
         }
         if (!artistaService.artistas.containsKey(musica.getArtista().getId())){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Artista não existe");
+        }
+        if (!albumService.albums.containsKey(musica.getAlbum().getId())){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Album não existe");
         }
         musicas.put(musica.getId(), musica);
         return musica;
