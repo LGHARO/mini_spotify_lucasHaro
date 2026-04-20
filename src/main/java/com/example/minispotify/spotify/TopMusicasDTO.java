@@ -4,16 +4,21 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class TopMusicasDTO {
+
     @NotBlank
-    private  String titulo;
-    @NotNull
+    private String titulo;
+
+    @NotBlank
     private String artista;
+
     @NotNull
     private long totalReproducoes;
 
-
-    // mesmo que não chamemos diretamente essas funções get o tradutor para json do spring precisa deles pra acessar
-    // as informacoes privadas do objeto
+    public TopMusicasDTO(String titulo, String artista, long totalReproducoes) {
+        this.titulo = titulo;
+        this.artista = artista;
+        this.totalReproducoes = totalReproducoes;
+    }
 
     public String getTitulo() {
         return titulo;
@@ -26,11 +31,4 @@ public class TopMusicasDTO {
     public long getTotalReproducoes() {
         return totalReproducoes;
     }
-
-    public TopMusicasDTO(String titulo, String artista, long totalReproducoes) {
-        this.titulo = titulo;
-        this.artista = artista;
-        this.totalReproducoes = totalReproducoes;
-    }
-
 }

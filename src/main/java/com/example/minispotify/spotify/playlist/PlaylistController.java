@@ -1,5 +1,6 @@
-package com.example.minispotify.spotify;
+package com.example.minispotify.spotify.playlist;
 
+import com.example.minispotify.spotify.playlist.dto.SavePlaylistDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,12 +16,14 @@ public class PlaylistController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/playlists")
-    public Playlist postPlaylist(@Valid @RequestBody Playlist playlist){
-        return playlistService.cadastrarPlaylist(playlist);
+    public Playlist postPlaylist(@Valid @RequestBody SavePlaylistDTO dto){
+        return playlistService.cadastrarPlaylist(dto);
     }
 
     @PostMapping("/playlists/{playlistId}/musicas/{musicaId}")
-    public Playlist addMusica(@PathVariable String playlistId, @PathVariable String musicaId, @RequestHeader("X-USER-ID") String usuarioId){
+    public Playlist addMusica(@PathVariable Integer playlistId,
+                              @PathVariable Integer musicaId,
+                              @RequestHeader("X-USER-ID") Integer usuarioId){
         return playlistService.addMusica(playlistId, musicaId, usuarioId);
     }
 
@@ -30,18 +33,18 @@ public class PlaylistController {
     }
 
     @GetMapping("/playlists/{id}")
-    public Playlist getPlaylist(@PathVariable String id){
+    public Playlist getPlaylist(@PathVariable Integer id){
         return playlistService.buscarPlaylist(id);
     }
 
     @PutMapping("/playlists/{id}")
-    public Playlist updatePlaylist(@PathVariable String id, @RequestBody Playlist playlist){
+    public Playlist updatePlaylist(@PathVariable Integer id, @RequestBody Playlist playlist){
         return playlistService.atualizaPlaylist(id, playlist);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/playlists/{id}")
-    public void deletePlaylist(@PathVariable String id){
+    public void deletePlaylist(@PathVariable Integer id){
         playlistService.deletarPlaylist(id);
     }
 }
